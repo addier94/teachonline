@@ -36,6 +36,7 @@ export async function PATCH(
       }
     });
 
+    // get all, just published chapters
     const publishedChaptersInCourse = await db.chapter.findMany({
       where: {
         courseId: params.courseId,
@@ -43,6 +44,7 @@ export async function PATCH(
       }
     });
 
+    // there's not any publish chapter, i should updated course model to make unpublish 
     if (!publishedChaptersInCourse.length) {
       await db.course.update({
         where: {
